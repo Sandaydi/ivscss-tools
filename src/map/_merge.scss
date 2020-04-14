@@ -1,0 +1,11 @@
+// 可一次性传入多个map进行合并
+@function ivs-m-merge($maps...) {
+	$mapArr: ();
+	@each $map in $maps {
+		$mapArr: map-merge($map, $mapArr);
+	};
+	@return $mapArr;
+}
+
+
+

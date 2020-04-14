@@ -1,0 +1,146 @@
+@import '_lib';
+
+// 转数字
+@function ivs-toNum($val...) {
+	$val: ivs-isDualList($val);
+	$type: type-of($val);
+	@if $type == string {
+		$val: ivs-s-parseNum($val);
+	} @else if $type == list or $type == arglist {
+		$val: ivs-l-parseNum($val);
+	} @else if $type == map {
+		@return ivs-error('e04');
+	}
+	@return $val;
+}
+
+// 转字符串
+@function ivs-toStr($val...) {
+	$val: ivs-isDualList($val);
+	$type: type-of($val);
+	@if $type == number {
+		$val: ivs-n-parseStr($val);
+	} @else if $type == list or $type == arglist {
+		$val: ivs-l-parseStr($val);
+	} @else if $type == map {
+		@return ivs-error('e04');
+	}
+	@if $ivs-STRNEEDQUOTE {
+		$val: unquote($val);
+	} 
+	@return $val;
+}
+
+// 转列表
+@function ivs-toList($val...) {
+	$val: ivs-isDualList($val);
+	$type: type-of($val);
+	@if $type == number {
+		$val: ivs-n-parseList($val);
+	} @else if $type == string {
+		$val: ivs-s-parseList($val);
+	} @else if $type == map {
+		// @return ivs-error('e04');
+		$val: map-values($val);
+	}
+	@return $val;
+}
+
+// 翻转
+@function ivs-reverse($val...) {
+	$val: ivs-isDualList($val);
+	$type: type-of($val);
+	@if $type == number {
+		$val: ivs-n-reverse($val);
+	} @else if $type == list or $type == arglist {
+		$val: ivs-l-reverse($val);
+	} @else if $type == string {
+		$val: ivs-s-reverse($val);
+	} @else if $type == map {
+		@return ivs-error('e04');
+	}
+	@return $val;
+}
+
+// 实际上必填值有两个！
+// 通过index删除某元素
+@function ivs-remove($val...) {
+	$temp: ivs-isDualList($val);	
+	// 通过列表选项进行选择
+	$val: nth($temp, 1);
+	$idx: nth($temp, 2);
+	$type: type-of($val);
+	@if $type == number {
+		$val: ivs-n-removeItemByIndex($val, $idx);
+	} @else if $type == list or $type == arglist {
+		$val: ivs-l-removeItemByIndex($idx, $val);
+	} @else if $type == string {
+		$val: ivs-s-removeItemByIndex($val, $idx);
+	} @else if $type == map {
+		// @return ivs-error('e04');
+		$val: map-remove($val, $idx);
+	}
+	@return $val;
+}
+
+// 实际上必填值有三个！
+@function ivs-remove-v($val...) {
+	$temp: ivs-isDualList($val);
+	// @error $temp;
+	// 通过列表选项进行选择
+	$val: nth($temp, 1);
+	$v: nth($temp, 2);
+	$q: nth($temp, 3);
+	// @error $val $v $q;
+	
+	$type: type-of($val);
+	@if $type == number {
+		$v: ivs-n-parseStr($v);
+		$val: ivs-n-removeItemByVal($val, $v, $q);
+	} @else if $type == list or $type == arglist {
+		// @error $val $q $v;
+		$val: ivs-l-removeItemByValue($v, $q, $val);
+	} @else if $type == string {
+		$v: ivs-s-parseNum($v);
+		$val: ivs-s-removeItemByValue($val, $v, $q);
+	} @else if $type == map {
+		@return ivs-error('e04');
+	}
+	@return $val;
+}
+
+
+@function ivs-splice($val...) {
+	$temp: ivs-isDualList($val);
+	// @error $temp;
+	// 通过列表选项进行选择
+	$val: nth($temp, 1);
+	$star: nth($temp, 2);
+	$end: nth($temp, 3);
+	$type: type-of($val);
+	@if $type == string {
+		@return ivs-s-splice($val, $star, $end);
+	} @else if $type == arglist or $type == list {
+		@return ivs-l-splice($star, $end, $val);
+	} @else {
+		@return ivs-error('e08');
+	}
+}
+
+@function ivs-splice-q($val...) {
+	$temp: ivs-isDualList($val);
+	// @error $temp;
+	// 通过列表选项进行选择
+	$val: nth($temp, 1);
+	$star: nth($temp, 2);
+	$num: nth($temp, 3);
+	$type: type-of($val);
+	@if $type == string {
+		@return ivs-s-splice($val, $star, $end);
+	} @else if $type == arglist or $type == list {
+		@return ivs-l-splice($star, $end, $val);
+	} @else {
+		@return ivs-error('e08');
+	}
+}
+

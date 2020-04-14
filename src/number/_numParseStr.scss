@@ -1,0 +1,11 @@
+@import '../_config';
+
+@function ivs-n-parseStr($num) {
+	$str: quote($num);
+	
+	@if $ivs-STRNEEDQUOTE {
+		$str: unquote($str);
+	}
+	@return $str;
+}
+

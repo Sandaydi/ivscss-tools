@@ -1,0 +1,74 @@
+// 输出的字符串需要括号
+// false为默认输出，true为不需要
+$ivs-STRNEEDQUOTE: false;
+
+// 配置错误信息
+$ivs-ERRORMAP: (
+	'e01': (
+		type: 2,
+		func: 'string>_strParseNum:ivs-s-parseNu',
+		msg: (
+			'zh-cn': '输入的字符串不能转换为数值。',
+			'en': 'The string is not allowed to be converted to a number.'
+		),
+	),
+	'e02': (
+		type: 2,
+		func: 'list>_remove:ivs-l-removeItemByIndex',
+		msg: (
+			'zh-cn': '索引值超出列表长度',
+			'en': 'index out of bounds'
+		)
+	),
+	'e03': (
+		type: 4,
+		func: 'list>_remove:ivs-l-removeItemByValue',
+		msg: (
+			'zh-cn': '找不到这个值，请确认是否是类型不一致导致。',
+			'en': 'This value cannot be found'
+		)
+	),
+	'e04': (
+		type: 2,
+		func: 'core>ivs-parseNum',
+		msg: (
+			'zh-cn': '不支持Map格式转换。',
+			'en': "Type of map is not allowed here."
+		)
+	),
+	'e05': (
+		type: 2,
+		func: 'list>_remove:ivs-l-removeItemByValue',
+		msg: (
+			'zh-cn': '找不到要替换的值，请检查是否因为字符串或数字的关系导致。',
+			'en': "Can't find the word, please check the input type of value is correctly."
+		)
+	),
+	'e06': (
+		type: 2,
+		func: 'map>_handle:ivs-m-handle',
+		msg: (
+			'zh-ch': '第一个参数输入不合法，只允许输入get或has',
+			'en': 'The first value can only be "get" or "has"'
+		)
+	),
+	'e07': (
+		type: 2,
+		func: 'string>_splice:ivs-s-splice | list>_splice:ivs-l-splice',
+		msg: (
+			'zh-ch': '起始索引值过大或过小，请重新输入',
+			'en': 'The value of index is too large or too small'
+		)
+	),
+	'e08': (
+		type: 2,
+		func: '_core:ivs-splice | _core:ivs-splice-q',
+		msg: (
+			'zh-ch': '期望输入的是列表或字符串',
+			'en': 'Expect to get string or list.'
+		)
+	)
+) !default;
+
+
+

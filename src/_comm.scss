@@ -1,0 +1,9 @@
+// 判断是否是双重列表
+// 只要传值里含有列表参数都要加
+@function ivs-isDualList($list...) {
+	$list: nth($list, 1);
+	@if type-of($list) == arglist and length($list) == 1 {
+		$list: nth($list, 1);
+	}
+	@return $list;
+}

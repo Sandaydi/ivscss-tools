@@ -1,0 +1,28 @@
+// 移除字符串中某一项
+@function ivs-s-removeItemByIndex($str, $idx) {	
+	
+	$str-l: str-slice($str, 1, $idx - 1);
+	$str-r: str-slice($str, $idx + 1);
+	// str-slice($str,)
+	@return $str-l + $str-r;
+}
+
+// 移除字符串中某一个值
+@function ivs-s-removeItemByValue($str, $v, $q:1) {
+	// $v: quote($v);
+	@while $q > 0 {
+		$q: $q - 1;
+		@if str-index($str, $v) {
+			$idx: str-index($str, $v);
+			@if $idx {
+				$str: ivs-s-removeItemByIndex($str, $idx);
+			} 
+		}
+	}
+	@return $str;
+}
+
+
+
+
+

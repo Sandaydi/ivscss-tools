@@ -1,0 +1,11 @@
+@import '../string/_reverse';
+@import '../string/_strParseNum';
+
+@function ivs-n-reverse($num) {
+	$str: quote($num);
+	$str: ivs-s-reverse($str);
+	$num: ivs-s-parseNum($str);
+	@return $num;
+}
+
+

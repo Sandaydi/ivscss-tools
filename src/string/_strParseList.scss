@@ -1,0 +1,14 @@
+@import '../_config';
+
+// 将字符串转换为列表
+@function ivs-s-parseList($str) {
+	$list: ();
+	@for $i from 1 through str-length($str) {
+		$v: str-slice($str, $i, $i);
+		@if $ivs-STRNEEDQUOTE {
+			$v: unquote($v);
+		}
+		$list: append($list, $v);
+	}
+	@return $list;
+}

@@ -1,0 +1,22 @@
+@import '../_comm';
+@import '../_config';
+
+@function ivs-l-parseStr($list...) {
+	$list: ivs-isDualList($list);
+	$str: '';
+	@each $v in $list {
+		@if type-of($v) == list {
+			$str: $str + ivs-l-parseStr($v);
+		} @else {
+			$str: $str + $v;
+		}
+	}
+	@if $ivs-STRNEEDQUOTE {
+		$str: unquote($str);
+	}
+	@return $str;
+}
+
+
+
+

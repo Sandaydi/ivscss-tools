@@ -1,0 +1,66 @@
+@import '../_comm';
+@import '../error';
+
+// 通过索引移除列表的某一项
+@function ivs-l-removeItemByIndex($idx, $list...) {
+	$list: ivs-isDualList($list);
+	$listLen: length($list);
+	$newList: ();
+	@if $listLen < 2 {
+		@return ();
+	}
+	@if $idx > $listLen {
+		@return ivs-error('e02');
+	}
+	@if($idx > 1) {
+		@for $i from 1 to $idx {
+			$newList: append($newList, nth($list, $i));
+		}
+	}
+	@if($idx < $listLen) {
+		@for $i from (idx + 1) through $listLen {
+			$newList: append($newList, nth($list, $i));
+		}
+	}
+	@return $newList;
+}
+
+// 去除列表首位项
+@function ivs-l-removeFirstItem($list...) {
+	$newList: ();
+	@if type-of($list) == arglist and length($list) == 1 {
+		$list: nth($list, 1);
+	}
+	$newList: ivs-l-removeItemByIndex(1, $list);
+	@return $newList;
+}
+
+// 去除列表末尾项
+@function ivs-l-removeLastItem($list...) {
+	$newList: ();
+	$list: ivs-isDualList($list);
+	$newList: ivs-l-removeItemByIndex(length($list), $list);
+	@return $newList;
+}
+
+// 去除列表中某个值，删除多少个
+@function ivs-l-removeItemByValue($v, $q, $list...) {
+	$list: ivs-isDualList($list);
+	@if index($list, $v) == null {
+		@return ivs-error('e03');
+	}
+	@while $q > 0 {
+		$idx: index($list, $v);
+		@if $idx == null {
+			@return ivs-error('e05');
+		}
+		$q: $q - 1;
+		// @error $idx $list;
+		$list: ivs-l-removeItemByIndex($idx, $list);
+	}
+	@return $list;
+}
+
+
+
+

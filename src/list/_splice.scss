@@ -1,0 +1,45 @@
+@import '../comm';
+@import '../error';
+
+@function ivs-l-splice($star, $end, $list...) {
+	$list: ivs-isDualList($list);
+	$len: length($list);
+	$star: if($star>0, $star, $len + $star + 1);
+	$end: if($end>0, $end, $len + $end + 1);
+	$max: max($star, $end);
+	$min: min($star, $end); 
+	@if $min < 1 or $max > $len {
+		@return ivs-error('e07');
+	}
+	$list-left: ();
+	$list-right: ();
+	$list-slice: ();
+	@for $i from 1 to $min {
+		$list-left: append($list-left, nth($list, $i));
+	}
+	@for $i from $min through $max {
+		$list-slice: append($list-slice, nth($list, $i));
+	}
+	@for $i from $max + 1 through $len {
+		$list-right: append($list-left, nth($list, $i));
+	}
+	@return ($list-left, $list-right, $list-slice);
+}
+
+@function ivs-l-splice-q($star, $q, $list...){
+	$list: ivs-isDualList($list);
+	$star: if($star>0, $star, length($list) + $star + 1);
+	$end: $star + $q - 1;
+	@return ivs-l-splice($star, $q, $list);
+}
+
+
+
+
+
+
+
+
+
+
+

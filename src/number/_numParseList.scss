@@ -1,0 +1,11 @@
+@import '../string/_string';
+@import '../list/_list';
+
+@function ivs-n-parseList($num) {
+	$num: quote($num);
+	$list: ivs-s-parseList($num);
+	$list: ivs-l-strToNum($list);
+	@return $list;
+}
+
+

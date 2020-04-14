@@ -1,0 +1,80 @@
+@import '../_comm';
+@import '../_error';
+
+@function ivs-l-parseNum($list...) {
+	$list: ivs-isDualList($list);
+	// 返回的结果值
+	$resNum: 0;
+
+	// 存储负数乘值
+	$neg: 1;
+	// 判断是否有负号	
+	@if index($list, '-') == 1 {
+		$neg: -1;
+		// 去除负号
+		$list: ivs-l-removeItemByIndex(1, $list);
+	} 
+	// 如果含百分号的情况
+	$per: 1;
+	@if index($list, '%') == length($list) {
+		$per: 100;
+		$list: ivs-l-removeItemByIndex(length($list), $list);
+	}
+	
+	// 判断是存在小数点
+	$hasDot: if(index($list, '.')!=null,index($list, '.'), 0);
+	// 判断小数点存在位置是否合法
+	@if $hasDot != 0 {
+		@if $hasDot == 1 or $hasDot == length($list) {
+			@return ivs-error('e01');
+		}
+	}
+	
+	// 删去小数点
+	$list: ivs-l-removeItemByIndex($hasDot, $list);
+	// 判断数值存在位置是否合法
+	@each $v in $list {
+		@if type-of($v) != number {
+			@return ivs-error('e01');
+		}
+	}
+	
+	$listLen: length($list);
+	// 存储分割点
+	$idx: if($hasDot != 0, $hasDot, $listLen);
+	@if $hasDot != 0 {
+		// 小数点右边情况，为小数
+		@for $i from $idx through $listLen {
+			$temp: nth($list, $i);
+			$i: $i - $idx + 1;
+			@while $i > 0  {
+				$i: $i - 1;
+				$temp: $temp * 0.1;
+			}
+			$resNum: $resNum + $temp;
+		}
+		$idx: $idx - 1;
+	}
+	
+	// 小数点左边情况
+	@for $i from 1 through $idx {
+		$temp: nth($list, $i);
+		$i: $idx - $i;
+		@while $i > 0 {
+			$i: $i - 1;
+			$temp: $temp * 10;
+		}
+		$resNum: $resNum + $temp;
+	}
+	
+	// 负数情况
+	$resNum: $resNum * $neg;
+	// 百分比情况
+	$resNum: if($per == 100, percentage($resNum/$per), $resNum);
+	
+	@return $resNum;
+}
+
+
+
+

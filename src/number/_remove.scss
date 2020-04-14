@@ -1,0 +1,24 @@
+@import '../list/_remove';
+@import '../list/_listParseNum';
+@import '../string/_remove';
+@import '../string/_strParseNum';
+@import '_numParseList';
+
+@function ivs-n-removeItemByIndex($num, $idx) {
+	// 转成数组列表
+	$list: ivs-n-parseList($num);
+	// 通过索引值删除列表某项
+	$list: ivs-l-removeItemByIndex($idx, $list);
+	// 将列表转换为数值
+	$num: ivs-l-parseNum($list);
+	@return $num;
+}
+
+@function ivs-n-removeItemByVal($num, $v, $q:1) {
+	$v: ivs-s-parseNum($v);
+	$str: quote($num);
+	$str: ivs-s-removeItemByValue($str, $v, $q);
+	$num: ivs-l-parseNum($str);
+	@return $num;
+}
+

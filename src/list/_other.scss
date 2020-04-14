@@ -1,0 +1,16 @@
+@import '../_comm';
+
+@function ivs-l-strToNum($list...) {
+	$list: ivs-isDualList($list);
+	@for $i from 1 through length($list) {
+		@for $n from 0 through 9 {
+			@if quote($n) == nth($list, $i) {
+				$list: set-nth($list, $i, $n);
+			}
+		}
+	}
+	@return $list;
+}
+
+
+

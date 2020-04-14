@@ -1,0 +1,18 @@
+{
+  "name": "ivscss-tools",
+  "version": "0.0.1",
+  "description": "scss tool library",
+  "scripts": {
+    "start": "node-sass --watch test/test.scss test/test.css --out-style expanded"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "scss"
+  ],
+  "author": "sandaydi",
+  "license": "MIT",
+  "bugs": {
+  }
+}

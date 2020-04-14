@@ -1,0 +1,52 @@
+@import '../_comm';
+
+// 合并多个列表
+@function ivs-l-mergeMultiple($list...) {
+	$list: ivs-isDualList($list);
+	$newList: ();
+	@each $v in $list {
+		@if type-of($v) == list {
+			@for $i from 1 through length($v) {
+				$newList: append($newList, nth($v, $i));
+			}
+		} @else {
+			$newList: append($newList, $v);
+		}
+	}
+	// @error type-of($value: $list);
+	@return $newList;
+}
+
+@function ivs-l-mergeMultipleSimple($list...) {
+	$list: ivs-isDualList($list);
+	$newList: ();
+	
+}
+
+
+
+
+// 不管嵌套多少层都可以将值取出来
+@function ivs-l-mergeMultiple-deep($list...) {
+	$list: ivs-isDualList($list);
+	$newList: ();
+	@each $v in $list {
+		@if type-of($v) == list {
+			$newList: append($newList, ivs-l-mergeMultiple-deep($v));
+		} @else {
+			$newList: append($newList, $v);
+		}
+	}
+	@return $newList;
+}
+
+
+
+
+
+
+
+
+
+
+

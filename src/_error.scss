@@ -1,0 +1,22 @@
+@import  '_config';
+
+// 错误收集
+@function ivs-error($code) {
+	// 1 - 返回false
+	// 2 - 提示中文错误
+	// 3 - 提示英文错误
+	// 4 - 输出代码所在位置
+	$errMap: map-get($ivs-ERRORMAP, $code);
+	$errType: map-get($errMap, type);
+	$errIdx: "[" + $code + "]";
+	@if $errType == 1 {
+		@return false;
+	} @else if $errType == 2 {
+		@error $errIdx + map-get(map-get($errMap, msg), 'zh-cn');
+	} @else if $errType == 3 {
+		@error $errIdx + map-get(map-get($errMap, msg), 'en');
+	} @else {
+		@debug $errIdx + map-get($errMap, func);
+	}
+}
+
