@@ -3,6 +3,10 @@
 $ivs-STRNEEDQUOTE: false;
 
 // 配置错误信息
+	// 1 - 返回false
+	// 2 - 提示中文错误
+	// 3 - 提示英文错误
+	// 4 - 输出代码所在位置
 $ivs-ERRORMAP: (
 	'e01': (
 		type: 2,

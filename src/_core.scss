@@ -115,13 +115,13 @@
 	// @error $temp;
 	// 通过列表选项进行选择
 	$val: nth($temp, 1);
-	$star: nth($temp, 2);
+	$start: nth($temp, 2);
 	$end: nth($temp, 3);
 	$type: type-of($val);
 	@if $type == string {
-		@return ivs-s-splice($val, $star, $end);
+		@return ivs-s-splice($val, $start, $end);
 	} @else if $type == arglist or $type == list {
-		@return ivs-l-splice($star, $end, $val);
+		@return ivs-l-splice($start, $end, $val);
 	} @else {
 		@return ivs-error('e08');
 	}
@@ -132,13 +132,13 @@
 	// @error $temp;
 	// 通过列表选项进行选择
 	$val: nth($temp, 1);
-	$star: nth($temp, 2);
+	$start: nth($temp, 2);
 	$num: nth($temp, 3);
 	$type: type-of($val);
 	@if $type == string {
-		@return ivs-s-splice($val, $star, $end);
+		@return ivs-s-splice($val, $start, $end);
 	} @else if $type == arglist or $type == list {
-		@return ivs-l-splice($star, $end, $val);
+		@return ivs-l-splice($start, $end, $val);
 	} @else {
 		@return ivs-error('e08');
 	}

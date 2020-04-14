@@ -1,13 +1,13 @@
 @import '../error';
 
 // 剪切字符串返回左右两边的列表及被裁剪后的片段
-@function ivs-s-splice($str, $star, $end) {
+@function ivs-s-splice($str, $start, $end) {
 	$len: str-length($str);
-	$star: if($star>0, $star, $len + $star + 1);
+	$start: if($start>0, $start, $len + $start + 1);
 	$end: if($end>0, $end, $len + $end + 1);
 	
-	$max: max($star, $end);
-	$min: min($star, $end); 
+	$max: max($start, $end);
+	$min: min($start, $end); 
 	@if $min < 1 or $max > $len {
 		@return ivs-error('e07');
 	}
@@ -22,9 +22,9 @@
 }
 
 // 剪切字符串返回左右两边的列表及被裁剪后的片段
-@function ivs-s-splice-q($str, $star, $q) {
-	$star: if($star>0, $star, tr-length($str) + $star + 1);
-	$end: $star + $q - 1;
-	@return ivs-s-splice($str, $star, $end);
+@function ivs-s-splice-q($str, $start, $q) {
+	$start: if($start>0, $start, tr-length($str) + $start + 1);
+	$end: $start + $q - 1;
+	@return ivs-s-splice($str, $start, $end);
 }
 
