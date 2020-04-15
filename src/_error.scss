@@ -1,5 +1,5 @@
 @import  '_config';
-@import 'map/_handle'
+@import  '_comm';
 
 // 错误收集
 @function ivs-error($code) {
@@ -9,15 +9,39 @@
 	// 4 - 输出代码所在位置
 	$errMap: map-get($ivs-ERRORMAP, $code);
 	$errType: map-get($errMap, type);
+	$errMsg: map-get($errMap, msg);
+	// @error '错误' $errType;
 	$errIdx: "[" + $code + "]";
 	@if $errType == 1 {
 		@return false;
 	} @else if $errType == 2 {
-		@error $errIdx + map-get(map-get($errMap, msg), 'zh-cn');
+		@error $errIdx map-get($errMsg, 'zh-cn');
 	} @else if $errType == 3 {
-		@error $errIdx + map-get(map-get($errMap, msg), 'en');
+		@error $errIdx map-get($errMsg, 'en');
 	} @else {
-		@debug $errIdx + map-get($errMap, func);
+		@error $errIdx map-get($errMap, func);
 	}
 }
 
+@function ivs-removev-error($v, $q, $temp-q, $val...) {
+	$val: ivs-isDualList($val);
+	$type: type-of($val);
+	$idx: null;
+	@if $type == list or $type == arglist {
+		$idx: index($val, $v);
+	} @else {
+		$idx: str-index($val, $v);
+	}
+	@if $idx == null {
+		@if $q == $temp-q {
+			@if not $ivs-ALLOWVNOTFIND {
+				@return ivs-error('e03');
+			}
+		} @else {
+			@if not $ivs-ALLOWQOUT {
+				@return ivs-error('e09');
+			}
+		}
+	}
+	@return $idx;
+}

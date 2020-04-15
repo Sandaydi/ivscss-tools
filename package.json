@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "scss tool library",
   "scripts": {
-    "start": "node-sass --watch test/test.scss test/test.css --out-style expanded"
+    "start": "node-sass --watch test/test-core.scss test/test-core.css --out-style expanded"
   },
   "repository": {
     "type": "git"

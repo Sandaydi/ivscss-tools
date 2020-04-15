@@ -1,22 +1,25 @@
+@import '../_config';
+@import '../error';
+
 // 移除字符串中某一项
 @function ivs-s-removeItemByIndex($str, $idx) {	
-	
-	$str-l: str-slice($str, 1, $idx - 1);
+	$str-l: '';
+	@if $idx > 1 {
+		$str-l: str-slice($str, 1, $idx - 1);
+	}
+	// @error $str-l;
 	$str-r: str-slice($str, $idx + 1);
-	// str-slice($str,)
 	@return $str-l + $str-r;
 }
 
 // 移除字符串中某一个值
 @function ivs-s-removeItemByValue($str, $v, $q:1) {
-	// $v: quote($v);
+	$temp-q: $q;
 	@while $q > 0 {
+		$idx: ivs-removev-error($v, $q, $temp-q, $str);
 		$q: $q - 1;
-		@if str-index($str, $v) {
-			$idx: str-index($str, $v);
-			@if $idx {
-				$str: ivs-s-removeItemByIndex($str, $idx);
-			} 
+		@if $idx != null{
+			$str: ivs-s-removeItemByIndex($str, $idx);
 		}
 	}
 	@return $str;

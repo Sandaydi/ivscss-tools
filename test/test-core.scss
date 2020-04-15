@@ -1,0 +1,62 @@
+@import '../src/_core';
+// /**
+//  * ivs-toNum($val)转数值
+//  */
+.ivs-toNum {
+	$t1: ivs-toNum('1234');
+	$t2: ivs-toNum('5','6','7','8');
+	$t3: ivs-toNum(9,'8', 1,'8');
+	content: $t1 type-of($t1);
+	content: $t2 type-of($t2);
+	content: $t3 type-of($t3);
+}
+
+.ivs-toStr {
+	$t1: ivs-toStr(1,'2',3,4);
+	$t2: ivs-toStr(5678);
+	$t3: ivs-toStr(ABCD);
+	content: $t1 type-of($t1);
+	content: $t2 type-of($t2);
+	content: $t3 type-of($t3);
+}
+
+.ivs-toList {
+	$t1: ivs-toList(1,'2',3,4);
+	$t2: ivs-toList(5678);
+	$t3: ivs-toList(ABCD);
+	$t4: ivs-toList((1: ab, 2: cd, 3:hello, 4: world));
+	content: $t1 type-of($t1);
+	content: $t2 type-of($t2);
+	content: $t3 type-of($t3);
+	content: $t4 type-of($t4);
+}
+
+.ivs-reverse {
+	$t1: ivs-reverse(1,'2',3, 4);
+	$t2: ivs-reverse(5678);
+	$t3: ivs-reverse(ABCD);
+	content: $t1;
+	content: $t2;
+	content: $t3;
+}
+
+.ivs-remove {
+	$t1: ivs-remove((1,'2',3, 4), 2);
+	$t2: ivs-remove(5678, 2);
+	$t3: ivs-remove(ABCD, 2);
+	content: $t1;
+	content: $t2;
+	content: $t3;
+}
+
+.ivs-remove-v {
+	$t1: ivs-remove-v((1,'2', 2, 2, 3, 4), 6, 2);
+	$t2: ivs-remove-v(566678, 6, 1);
+	$t3: ivs-remove-v(ABCCCD, A, 2);
+	content: $t1;
+	content: $t2;
+	content: $t3;
+}
+
+
+

@@ -1,11 +1,12 @@
 @import '../_comm';
+@import '_other';
 @import '../_error';
 
 @function ivs-l-parseNum($list...) {
 	$list: ivs-isDualList($list);
 	// 返回的结果值
 	$resNum: 0;
-
+	
 	// 存储负数乘值
 	$neg: 1;
 	// 判断是否有负号	
@@ -29,12 +30,14 @@
 			@return ivs-error('e01');
 		}
 	}
-	
 	// 删去小数点
 	$list: ivs-l-removeItemByIndex($hasDot, $list);
+	// 将数值转换为整数
+	$list: ivs-l-strToNum($list);
 	// 判断数值存在位置是否合法
 	@each $v in $list {
 		@if type-of($v) != number {
+		// @error type-of($v);
 			@return ivs-error('e01');
 		}
 	}

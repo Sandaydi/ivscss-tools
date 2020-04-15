@@ -68,7 +68,8 @@
 	$temp: ivs-isDualList($val);	
 	// 通过列表选项进行选择
 	$val: nth($temp, 1);
-	$idx: nth($temp, 2);
+	$idx: ivs-toNum(nth($temp, 2));
+	
 	$type: type-of($val);
 	@if $type == number {
 		$val: ivs-n-removeItemByIndex($val, $idx);
@@ -91,17 +92,14 @@
 	$val: nth($temp, 1);
 	$v: nth($temp, 2);
 	$q: nth($temp, 3);
-	// @error $val $v $q;
-	
 	$type: type-of($val);
 	@if $type == number {
-		$v: ivs-n-parseStr($v);
 		$val: ivs-n-removeItemByVal($val, $v, $q);
 	} @else if $type == list or $type == arglist {
-		// @error $val $q $v;
 		$val: ivs-l-removeItemByValue($v, $q, $val);
 	} @else if $type == string {
-		$v: ivs-s-parseNum($v);
+		// @error '这里' $val $v $q $type;
+		// $q: ivs-s-parseNum($q);
 		$val: ivs-s-removeItemByValue($val, $v, $q);
 	} @else if $type == map {
 		@return ivs-error('e04');

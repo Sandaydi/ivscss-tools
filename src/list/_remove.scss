@@ -6,22 +6,25 @@
 	$list: ivs-isDualList($list);
 	$listLen: length($list);
 	$newList: ();
+	// @error $list, $idx, $listLen;
 	@if $listLen < 2 {
 		@return ();
 	}
 	@if $idx > $listLen {
 		@return ivs-error('e02');
 	}
+	// @error $list;
 	@if($idx > 1) {
 		@for $i from 1 to $idx {
 			$newList: append($newList, nth($list, $i));
 		}
 	}
 	@if($idx < $listLen) {
-		@for $i from (idx + 1) through $listLen {
+		@for $i from ($idx + 1) through $listLen {
 			$newList: append($newList, nth($list, $i));
 		}
 	}
+	// @error $newList;
 	@return $newList;
 }
 
@@ -46,17 +49,14 @@
 // 去除列表中某个值，删除多少个
 @function ivs-l-removeItemByValue($v, $q, $list...) {
 	$list: ivs-isDualList($list);
-	@if index($list, $v) == null {
-		@return ivs-error('e03');
-	}
+	$temp-q: $q;
 	@while $q > 0 {
-		$idx: index($list, $v);
-		@if $idx == null {
-			@return ivs-error('e05');
-		}
+		// $idx: index($list, $v);
+		$idx: ivs-removev-error($v, $q, $temp-q, $list);
 		$q: $q - 1;
-		// @error $idx $list;
-		$list: ivs-l-removeItemByIndex($idx, $list);
+		@if $idx != null{
+			$list: ivs-l-removeItemByIndex($idx, $list);
+		}
 	}
 	@return $list;
 }

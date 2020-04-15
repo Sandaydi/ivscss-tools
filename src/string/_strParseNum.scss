@@ -4,7 +4,7 @@
 @function ivs-s-parseNum($str) {
 	// 分割字符串成列表
 	$list: ivs-s-parseList($str);
-	
+	// @error $list length($list);
 	// 列表的每一项字符串转换成数值
 	$list: ivs-l-strToNum($list);
 	@return ivs-l-parseNum($list);

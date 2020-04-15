@@ -1,0 +1,17 @@
+
+
+
+// [ivs-remove-q]错误配置
+$ivs-allow-q-out: true;
+$ivs-allow-v-notfind: true;
+
+
+// 错误返回值配置
+$ivs-errortype: (
+	// 'e01': (type: 2),
+	// 'e02': (type: 2)
+);
+
+
+
+

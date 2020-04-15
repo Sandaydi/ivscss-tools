@@ -6,9 +6,12 @@
 		@for $n from 0 through 9 {
 			@if quote($n) == nth($list, $i) {
 				$list: set-nth($list, $i, $n);
+				// @error $n == 0;
+				// @error set-nth($list, $i, 0);
 			}
 		}
 	}
+	// @error $list;
 	@return $list;
 }
 

@@ -76,7 +76,7 @@ ivscss-tools是补全scss欠缺的一些接口函数而生的工具库。
 		- 右边片段
 		- 被剪切的片段
 - ivs-splice-q($val, $start, $q)
-	- 和上面区别在于$q是多少个
+	- 和上面区别在于$0q是多少个
 		- string ✔
 		- list ✔
 		- number ✖
@@ -110,7 +110,6 @@ ivscss-tools是补全scss欠缺的一些接口函数而生的工具库。
 	- 翻转列表
 - ivs-l-splice($list)
 	- 剪切列表
-	- 
 ### map
 - ivs-mhandle($way, $map, $params)
 	- 映射的连续操作

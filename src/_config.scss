@@ -1,13 +1,23 @@
+@import '../ivscss-tools';
 // 输出的字符串需要括号
 // false为默认输出，true为不需要
 $ivs-STRNEEDQUOTE: false;
+
+// ivs-remove-q
+// 是否允许 $q：删除数量 超出被查找的值的最大数量
+$ivs-allow-q-out: true !default;
+$ivs-ALLOWQOUT: $ivs-allow-q-out;
+// 是否允许 $v：查找值 不存在
+$ivs-allow-v-notfind: true !default;
+$ivs-ALLOWVNOTFIND: $ivs-allow-v-notfind;
 
 // 配置错误信息
 	// 1 - 返回false
 	// 2 - 提示中文错误
 	// 3 - 提示英文错误
 	// 4 - 输出代码所在位置
-$ivs-ERRORMAP: (
+// 内置错误
+$ivs-ERRORMAP-ADMIND: (
 	'e01': (
 		type: 2,
 		func: 'string>_strParseNum:ivs-s-parseNu',
@@ -25,7 +35,7 @@ $ivs-ERRORMAP: (
 		)
 	),
 	'e03': (
-		type: 4,
+		type: 2,
 		func: 'list>_remove:ivs-l-removeItemByValue',
 		msg: (
 			'zh-cn': '找不到这个值，请确认是否是类型不一致导致。',
@@ -52,7 +62,7 @@ $ivs-ERRORMAP: (
 		type: 2,
 		func: 'map>_handle:ivs-m-handle',
 		msg: (
-			'zh-ch': '第一个参数输入不合法，只允许输入get或has',
+			'zh-cn': '第一个参数输入不合法，只允许输入get或has',
 			'en': 'The first value can only be "get" or "has"'
 		)
 	),
@@ -60,7 +70,7 @@ $ivs-ERRORMAP: (
 		type: 2,
 		func: 'string>_splice:ivs-s-splice | list>_splice:ivs-l-splice',
 		msg: (
-			'zh-ch': '起始索引值过大或过小，请重新输入',
+			'zh-cn': '起始索引值过大或过小，请重新输入',
 			'en': 'The value of index is too large or too small'
 		)
 	),
@@ -68,11 +78,37 @@ $ivs-ERRORMAP: (
 		type: 2,
 		func: '_core:ivs-splice | _core:ivs-splice-q',
 		msg: (
-			'zh-ch': '期望输入的是列表或字符串',
+			'zh-cn': '期望输入的是列表或字符串',
 			'en': 'Expect to get string or list.'
 		)
+	),
+	'e09': (
+		type: 2,
+		func: 'list,number,string>_remove:ivs-*-removeItemByValue',
+		msg: (
+			'zh-cn': '$q超出被查找值里的最大数量/长度',
+			'en': 'Exceeded the maximum number in the searched value.'
+		)
 	)
-) !default;
+);
 
-
-
+@function ivs-getErrorMsg($errType) {
+	$newMapErrorInfo: ();
+	@each $key,$val in $errType {
+		$typeTemp: map-get($val, type);
+		$mapTemp: map-get($ivs-ERRORMAP-ADMIND, $key);
+		$newMapErrorInfoTemp: (
+			$key: (
+				type: $typeTemp,
+				func: map-get($mapTemp, func),
+				msg: map-get($mapTemp, msg)
+			)
+		);
+		$newMapErrorInfo: map-merge($newMapErrorInfo, $newMapErrorInfoTemp);
+	}
+	@return $newMapErrorInfo;
+}
+// @error $ivs-errortype;
+$ivs-errortype: () !default;
+$ivs-ERRORMAP-USER: ivs-getErrorMsg($ivs-errortype);
+$ivs-ERRORMAP: map-merge($ivs-ERRORMAP-ADMIND, $ivs-ERRORMAP-USER);
