@@ -1,5 +1,5 @@
 @import '../ivscss-tools';
-// 输出的字符串需要括号
+// 输出的字符串需要双引号
 // false为默认输出，true为不需要
 $ivs-STRNEEDQUOTE: false;
 
@@ -88,6 +88,14 @@ $ivs-ERRORMAP-ADMIND: (
 		msg: (
 			'zh-cn': '$q超出被查找值里的最大数量/长度',
 			'en': 'Exceeded the maximum number in the searched value.'
+		)
+	),
+	'e10': (
+		type: 2,
+		func: '_core:ivs-splice-q',
+		msg: (
+			'zh-cn': '要截取的数量不能为负，或许你是希望使用ivs-splice方法',
+			'en': 'Negative number not allowed.'
 		)
 	)
 );

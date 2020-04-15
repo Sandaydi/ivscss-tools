@@ -17,28 +17,22 @@
 	@return $newList;
 }
 
-@function ivs-l-mergeMultipleSimple($list...) {
-	$list: ivs-isDualList($list);
-	$newList: ();
-	
-}
-
-
 
 
 // 不管嵌套多少层都可以将值取出来
-@function ivs-l-mergeMultiple-deep($list...) {
-	$list: ivs-isDualList($list);
-	$newList: ();
-	@each $v in $list {
-		@if type-of($v) == list {
-			$newList: append($newList, ivs-l-mergeMultiple-deep($v));
-		} @else {
-			$newList: append($newList, $v);
-		}
-	}
-	@return $newList;
-}
+// 推荐使用原生接口 join()
+// @function ivs-l-mergeMultiple-deep($list...) {
+// 	$list: ivs-isDualList($list);
+// 	$newList: ();
+// 	@each $v in $list {
+// 		@if type-of($v) == list {
+// 			$newList: append($newList, ivs-l-mergeMultiple-deep($v));
+// 		} @else {
+// 			$newList: append($newList, $v);
+// 		}
+// 	}
+// 	@return $newList;
+// }
 
 
 

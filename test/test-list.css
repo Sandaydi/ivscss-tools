@@ -1,0 +1,41 @@
+.ivs-l-parseNum {
+  content: 12345; }
+
+.ivs-l-parseStr {
+  content: "12345"; }
+
+.ivs-l-mergeMultiple {
+  content: 1 2 3 4 5 A B C D, E, F;
+  content: D, E, F;
+  content: list; }
+
+.ivs-l-strToNum {
+  content: 1, 2, 3, 4, 5;
+  content: number;
+  content: number;
+  content: number; }
+
+.ivs-l-removeItemByIndex {
+  content: 1 3 4 5; }
+
+.ivs-l-removeFirstItem {
+  content: 2 3 4 5; }
+
+.ivs-l-removeLastItem {
+  content: 1 2 3 4; }
+
+.ivs-l-removeItemByValue {
+  content: A B C D; }
+
+.ivs-l-reverse {
+  content: D C B A A A; }
+
+.ivs-l-splice {
+  content: "left" A;
+  content: "right" A D;
+  content: "cut" A A B C; }
+
+.ivs-l-splice-q {
+  content: "left";
+  content: "right" D;
+  content: "cut" A A A; }

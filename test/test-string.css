@@ -1,0 +1,32 @@
+.ivs-s-parseList {
+  content: A B C D E F G;
+  content: list; }
+
+.ivs-s-parseNum {
+  content: "5" "6" "7" "8";
+  content: list; }
+
+.ivs-s-removeItemByIndex {
+  content: ACDEFG; }
+
+.ivs-s-removeItemByValue {
+  content: ABCEFG; }
+
+.ivs-s-reverse {
+  content: "GFEDCBA"; }
+
+.ivs-s-splice {
+  content: "left" AB;
+  content: "right" FG;
+  content: "cut" CDE;
+  content: "left" ABCDE;
+  content: "right" ;
+  content: "cut" FG; }
+
+.ivs-s-splice-q {
+  content: "left" ;
+  content: "right" CDEFG;
+  content: "cut" AB;
+  content: "left" A;
+  content: "right" EFG;
+  content: "cut" BCD; }

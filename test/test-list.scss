@@ -1,0 +1,63 @@
+@import '../src/_core';
+
+$list: 1, 2, 3, 4, 5;
+.ivs-l-parseNum {
+	content: ivs-l-parseNum($list);
+}
+
+.ivs-l-parseStr {
+	content: ivs-l-parseStr($list);
+}
+
+$list2: A, B, C, (D, E, F);
+.ivs-l-mergeMultiple {
+	$res: ivs-l-mergeMultiple($list, $list2);
+	content: $res;
+	content: nth($res, length($res));
+	content: type-of(nth($res, length($res)));
+}
+
+$list3: '1', '2', '3', '4', '5';
+.ivs-l-strToNum {
+	$res: ivs-l-strToNum($list3);
+	content: $res;
+	content: type-of(nth($res, 1));
+	content: type-of(nth($res, 2));
+	content: type-of(nth($res, 3));
+}
+
+.ivs-l-removeItemByIndex {
+	content: ivs-l-removeItemByIndex(2, $list);
+}
+
+.ivs-l-removeFirstItem {
+	content: ivs-l-removeFirstItem($list);
+}
+
+.ivs-l-removeLastItem{
+	content: ivs-l-removeLastItem($list);
+}
+
+$list4: A, A, A, B, C, D;
+.ivs-l-removeItemByValue{
+	content: ivs-l-removeItemByValue(A, 2, $list4);
+}
+
+.ivs-l-reverse{
+	content: ivs-l-reverse($list4);
+}
+
+
+.ivs-l-splice{
+	$res: ivs-l-splice(2, -2, $list4);
+	content: 'left' nth($res, 1);
+	content: 'right' nth($res, 2);
+	content: 'cut' nth($res, 3);
+}
+
+.ivs-l-splice-q{
+	$res: ivs-l-splice-q(1, 3, $list4);
+	content: 'left' nth($res, 1);
+	content: 'right' nth($res, 2);
+	content: 'cut' nth($res, 3);
+}

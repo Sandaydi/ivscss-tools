@@ -28,3 +28,13 @@
   content: 1, "2", 2, 2, 3, 4;
   content: 56678;
   content: "BCCCD"; }
+
+.ivs-splice {
+  content: 1 "--" 1 4 "--" "2" 2 2 3;
+  content: "1" "--" "45" "--" "23";
+  content: A "--" CD "--" BCC; }
+
+.ivs-splice-q {
+  content: 1 "--" 1 4 "--" "2" 2 2;
+  content: "1" "--" "345" "--" "2";
+  content: A "--" CCD "--" BC; }

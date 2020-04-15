@@ -1,0 +1,25 @@
+@import '../src/_core';
+
+$num: 12345;
+.ivs-n-parseList {
+	$res: ivs-n-parseList($num);
+	content: $res;
+	content: type-of($res);
+}
+
+.ivs-n-parseStr {
+	$res: ivs-n-parseStr($num);
+	content: $res;
+	content: type-of($res);
+}
+
+.ivs-n-removeItemByIndex {
+	$res: ivs-n-removeItemByIndex($num, 2);
+	content: $res;
+}
+
+
+.ivs-n-removeItemByVal{
+	$res: ivs-n-removeItemByVal($num, 5);
+	content: $res;
+}

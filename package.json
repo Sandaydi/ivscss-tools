@@ -3,7 +3,12 @@
   "version": "0.0.1",
   "description": "scss tool library",
   "scripts": {
-    "start": "node-sass --watch test/test-core.scss test/test-core.css --out-style expanded"
+    "test-code": "node-sass --watch test/test-core.scss test/test-core.css --out-style expanded",
+    "test-math": "node-sass --watch test/test-math.scss test/test-math.css --out-style expanded",
+    "test-map": "node-sass --watch test/test-map.scss test/test-map.css --out-style expanded",
+    "test-string": "node-sass --watch test/test-string.scss test/test-string.css --out-style expanded",
+    "test-number": "node-sass --watch test/test-number.scss test/test-number.css --out-style expanded",
+    "test-list": "node-sass --watch test/test-list.scss test/test-list.css --out-style expanded"
   },
   "repository": {
     "type": "git"

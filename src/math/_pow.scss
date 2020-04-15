@@ -1,8 +1,9 @@
 
 @function ivs-math-pow($num, $q) {
-	@while $q > 0 {
+	$temp: $num;
+	@while $q > 1 {
 		$q: $q - 1;
-		$num: $num * $num;
+		$num: $num * $temp;
 	}
 	@return $num;
 }

@@ -3,7 +3,7 @@
 // map的连续操作
 // way是最外层map操作要用到的方式，如map-get，还是map-has-key
 // 所以允许填写值：get和has
-@function ivs-mhandle($way, $map, $params...) {
+@function ivs-m-handle($way, $map, $params...) {
 	@if $way != 'get' {
 		@if $way != 'has' {
 			@return ivs-error('e06');
@@ -17,7 +17,7 @@
 		$type: type-of($val);
 		// @error $type;
 		@if $type == list {
-			$val: ivs-mhandle('get', nth($val, 1), id);
+			$val: ivs-m-handle('get', nth($val, 1), id);
 			$type: type-of($val);
 		}
 		@if $type == map {

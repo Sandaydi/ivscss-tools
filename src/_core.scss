@@ -132,10 +132,18 @@
 	$val: nth($temp, 1);
 	$start: nth($temp, 2);
 	$num: nth($temp, 3);
+	@if $num < 0 {
+		@return ivs-error('e09');
+	}
+	$end: $start + $num - 1;
 	$type: type-of($val);
 	@if $type == string {
+		$len: str-length($val);
+		$end: if($end > $len, $len, $end);
 		@return ivs-s-splice($val, $start, $end);
 	} @else if $type == arglist or $type == list {
+		$len: length($val);
+		$end: if($end > $len, $len, $end);
 		@return ivs-l-splice($start, $end, $val);
 	} @else {
 		@return ivs-error('e08');

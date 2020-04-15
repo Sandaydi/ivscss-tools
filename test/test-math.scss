@@ -1,0 +1,8 @@
+@import '../src/_core';
+
+.ivs-math-pow{
+	content: ivs-math-pow(10, 3);
+	content: ivs-math-pow(0.5, 3);	
+}
+
+

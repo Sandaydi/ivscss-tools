@@ -111,11 +111,13 @@ ivscss-tools是补全scss欠缺的一些接口函数而生的工具库。
 - ivs-l-splice($list)
 	- 剪切列表
 ### map
-- ivs-mhandle($way, $map, $params)
+- ivs-m-handle($way, $map, $params)
 	- 映射的连续操作
 	- $way可选项:get/has
-- ivs-m-merge($map1, ...)
+- ivs-m-merge($map, ...)
 	- 合并多个map 
+	- 返回一个map
+- ivs-m-remove($val)
 	- 删除含有某个val值项
 	- 返回一个新的map
 ### number

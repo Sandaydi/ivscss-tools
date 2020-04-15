@@ -1,6 +1,6 @@
 // 移除掉map中含有某个val的元素
 @function ivs-m-remove($map, $v) {
-	$newMap: null;
+	$newMap: ();
 	@each $key, $value in $map {
 		@if $value != $v {
 			$newMap: map-merge($newMap, ($key: $value));

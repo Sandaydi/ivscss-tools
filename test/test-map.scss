@@ -1,0 +1,43 @@
+@import '../src/_core';
+
+.ivs-m-handle {
+	$map: (
+		"a": (
+			"apple": "苹果",
+			"color": "red",
+			"other": (
+				t1: "AAA",
+				t2: "BBB",
+				t3: "CCC"
+			)
+		)
+	);
+	$map-t: (
+		id: t1
+	);
+	
+	content: map-get(map-get(map-get($map, a), other), t3);
+	content: ivs-m-handle('get', $map, a, other, t3);
+	
+	content: map-has-key(map-get(map-get($map, a), other), t5);
+	content: ivs-m-handle('has', $map, a, other, t5);
+	
+	content: map-get(map-get(map-get($map, a), other), map-get($map-t, id));
+	content: ivs-m-handle('get', $map, a, other, ($map-t, id));
+}
+
+.ivs-m-merge {
+	$map1: ('城市A': '北京');
+	$map2: ('城市B': '上海');
+	$map3: ('城市C': '广州');
+	$map4: ('城市D': '深圳');
+	$map: ivs-m-merge($map1, $map2, $map3, $map4);
+	// @error $map;	
+}
+
+.ivs-m-remove {
+	$map: ('A': '苹果', 'B': '香蕉', 'C': '樱桃');
+	$map: ivs-m-remove($map, '香蕉');
+	// @error $map;
+}
+

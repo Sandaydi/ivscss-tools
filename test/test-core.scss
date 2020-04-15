@@ -58,5 +58,23 @@
 	content: $t3;
 }
 
+.ivs-splice {
+	$t1: ivs-splice((1,'2', 2, 2, 3, 4), 2, -2);
+	$t2: ivs-splice('12345', 2, 3);
+	$t3: ivs-splice(ABCCCD, 2, 4);
+	content: nth($t1, 1) '--' nth($t1, 2) '--' nth($t1, 3);
+	content:  nth($t2, 1) '--' nth($t2, 2) '--' nth($t2, 3);
+	content:  nth($t3, 1) '--' nth($t3, 2) '--' nth($t3, 3);
+}
+
+.ivs-splice-q {
+	$t1: ivs-splice-q((1,'2', 2, 2, 3, 4), 2, 3);
+	$t2: ivs-splice-q('12345', 2, 1);
+	$t3: ivs-splice-q(ABCCCD, 2, 2);
+	content: nth($t1, 1) '--' nth($t1, 2) '--' nth($t1, 3);
+	content:  nth($t2, 1) '--' nth($t2, 2) '--' nth($t2, 3);
+	content:  nth($t3, 1) '--' nth($t3, 2) '--' nth($t3, 3);
+}
+
 
 

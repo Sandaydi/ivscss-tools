@@ -1,0 +1,52 @@
+@import '../src/_core';
+
+$str: ABCDEFG;
+.ivs-s-parseList{
+	$res: ivs-s-parseList($str);
+	content: $res;
+	content: type-of($res);
+}
+
+$str2: '5678';
+.ivs-s-parseNum{
+	$res: ivs-s-parseList($str2);
+	content: $res;
+	content: type-of($res);
+}
+
+.ivs-s-removeItemByIndex{
+	$res: ivs-s-removeItemByIndex($str, 2);
+	content: $res;
+}
+
+.ivs-s-removeItemByValue{
+	$res: ivs-s-removeItemByValue($str, D);
+	content: $res;
+}
+
+.ivs-s-reverse{
+	$res: ivs-s-reverse($str);
+	content: $res;
+}
+
+.ivs-s-splice{
+	$res: ivs-s-splice($str, 3, 5);
+	$res2: ivs-s-splice($str, -1, -2);
+	content: 'left' nth($res, 1);
+	content: 'right' nth($res, 2);
+	content: 'cut' nth($res, 3);
+	content: 'left' nth($res2, 1);
+	content: 'right' nth($res2, 2);
+	content: 'cut' nth($res2, 3);
+}
+
+.ivs-s-splice-q{
+	$res: ivs-s-splice-q($str, 1, 2);
+	$res2: ivs-s-splice-q($str, 2, 3);
+	content: 'left' nth($res, 1);
+	content: 'right' nth($res, 2);
+	content: 'cut' nth($res, 3);
+	content: 'left' nth($res2, 1);
+	content: 'right' nth($res2, 2);
+	content: 'cut' nth($res2, 3);
+}
