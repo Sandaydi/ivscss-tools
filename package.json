@@ -1,7 +1,7 @@
 {
   "name": "ivscss-tools",
-  "version": "0.0.1",
-  "description": "scss tool library",
+  "version": "0.0.2",
+  "description": "丰富的scss函数库。The rich library of scss.",
   "scripts": {
     "test-code": "node-sass --watch test/test-core.scss test/test-core.css --out-style expanded",
     "test-math": "node-sass --watch test/test-math.scss test/test-math.css --out-style expanded",

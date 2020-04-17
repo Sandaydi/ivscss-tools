@@ -35,7 +35,6 @@
 			$res: map-has-key($res, $last);
 		}
 	}
-	
 	@return $res;
 }
 
