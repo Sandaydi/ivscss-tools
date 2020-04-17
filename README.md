@@ -14,6 +14,11 @@ For instance, convert a string type into a number type in scss is not allowed, a
 ❗ 小提示：
 这个工具库使用的是node-sass而非dart-sass，若你是使用**[dart-sass](https://sass.bootcss.com/dart-sass)**，可以去官网上了解如何兼容此文件。
 
+## 安装
+```shell
+npm i ivscss-tools
+```
+
 ## 🛠 API
 ✔ 详细使用方法介绍，已经放到语雀上啦。<br>
 请戳这里 **[ivscss-api](https://www.yuque.com/sanday/vq00su/pzv6z9)**
